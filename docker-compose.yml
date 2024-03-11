@@ -15,7 +15,7 @@ services:
       - msa-network
 
   contents:
-    image: gwangjang/reserve
+    image: accteama/reserve
     depends_on:
       - eureka
       - apigateway
