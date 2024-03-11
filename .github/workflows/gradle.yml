@@ -46,7 +46,7 @@
       - name: docker-compose.yml 
         uses: appleboy/scp-action@master
         with:
-            username: ec2-user
+            username: ubuntu
             host: ${{ secrets.HOST }}
             key: ${{ secrets.PRIVATE_KEY }}
             port: ${{ secrets.PORT }}
