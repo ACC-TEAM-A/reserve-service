@@ -10,20 +10,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController("/reserve")
+@RestController("/")
 @RequiredArgsConstructor
 public class ReserveController {
     private final ReserveService reserveService;
 
     // 예약 생성
     @PostMapping("")
-    public ResponseEntity<Reserve> createReserve() {
-        return ResponseEntity.ok(reserveService.createReserve());
+    public Reserve createReserve() {
+        return reserveService.createReserve();
     }
 
     // 예약 조회
     @GetMapping("")
-    public ResponseEntity<List<Reserve>> getReserves() {
-        return ResponseEntity.ok(reserveService.getReserves());
+    public List<Reserve> getReserves() {
+        return reserveService.getReserves();
     }
 }
