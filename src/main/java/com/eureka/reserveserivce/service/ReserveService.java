@@ -14,7 +14,7 @@ public class ReserveService {
 
     // 예약 생성
     public Reserve createReserve() {
-        return reserveRepository.save(Reserve.builder().status("테스트").build());
+        return reserveRepository.save(Reserve.builder().status("test").build());
     }
 
     // 예약 조회
