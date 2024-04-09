@@ -8,8 +8,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EventCount {
-    private Event event;
-    private int limit;
+    private Event event;    // 어떤 콘서트인지 식별
+    private int limit;  // 좌석 개수 (한도)
 
     private static final int END = 0;
 

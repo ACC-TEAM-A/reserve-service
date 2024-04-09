@@ -30,6 +30,9 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
+    // Feign
+    implementation 'io.github.openfeign:feign-httpclient:12.1'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.1.4'
 }
 
 dependencyManagement {
