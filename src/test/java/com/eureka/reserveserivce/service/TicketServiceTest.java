@@ -12,34 +12,34 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
-class GifticonServiceTest {
-
+class TicketServiceTest {
     @Autowired
-    private GifticonService gifticonService;
+    private TicketService ticketService;
 
     @Test
-    void 선착순이벤트_100명에게_기프티콘_30개_제공() throws InterruptedException {
-        final Event chickenEvent = Event.TICKET;
+    void 선착순티켓팅_100명에게_티켓_30개_제공() throws InterruptedException {
+        final Event ticketEvent = Event.TICKET;
         final int people = 100;
         final int limitCount = 30;
         final CountDownLatch countDownLatch = new CountDownLatch(people);
-        gifticonService.setEventCount(chickenEvent, limitCount);
+
+        ticketService.setEventCount(ticketEvent, limitCount);
 
         List<Thread> workers = Stream
-                .generate(() -> new Thread(new AddQueueWorker(countDownLatch, chickenEvent)))
+                .generate(() -> new Thread(new AddQueueWorker(countDownLatch, ticketEvent)))
                 .limit(people)
-                .collect(Collectors.toList());
+                .toList();
         workers.forEach(Thread::start);
         countDownLatch.await();
         Thread.sleep(5000); // 기프티콘 발급 스케줄러 작업 시간
 
-        final long failEventPeople = gifticonService.getSize(chickenEvent);
+        final long failEventPeople = ticketService.getSize(ticketEvent);
         assertEquals(people - limitCount, failEventPeople); // output : 70 = 100 - 30
     }
 
     private class AddQueueWorker implements Runnable{
-        private CountDownLatch countDownLatch;
-        private Event event;
+        private final CountDownLatch countDownLatch;
+        private final Event event;
 
         public AddQueueWorker(CountDownLatch countDownLatch, Event event) {
             this.countDownLatch = countDownLatch;
@@ -48,7 +48,7 @@ class GifticonServiceTest {
 
         @Override
         public void run() {
-            gifticonService.addQueue(event);
+            ticketService.addQueue(event);
             countDownLatch.countDown();
         }
     }

@@ -20,11 +20,19 @@ public class Reserve extends BaseTime {
     @Column(name = "reserve_id")
     private Long id;
 
+    @Column(name = "user_id")
+    private Long userId;
+
+    @Column(name = "concert_id")
+    private Long concertId;
+
     @Column(name = "status")
     private String status;
 
     @Builder
-    public Reserve(String status) {
+    public Reserve(Long userId, Long concertId, String status) {
+        this.userId = userId;
+        this.concertId = getConcertId();
         this.status = status;
     }
 }

@@ -15,7 +15,7 @@ import java.util.Set;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class GifticonService {
+public class TicketService {
     private final RedisTemplate<String,Object> redisTemplate;
     private static final long FIRST_ELEMENT = 0;
     private static final long LAST_ELEMENT = -1;
@@ -53,7 +53,7 @@ public class GifticonService {
         Set<Object> queue = redisTemplate.opsForZSet().range(event.toString(), start, end);
         for (Object people : queue) {
             final Ticket ticket = new Ticket(event);
-            log.info("'{}'님의 {} 기프티콘이 발급되었습니다 ({})",people, ticket.getEvent().getName(), ticket.getCode());
+            log.info("'{}'님의 {} 티켓이 발급되었습니다 ({})",people, ticket.getEvent().getName(), ticket.getCode());
             redisTemplate.opsForZSet().remove(event.toString(), people);
             this.eventCount.decrease();
         }

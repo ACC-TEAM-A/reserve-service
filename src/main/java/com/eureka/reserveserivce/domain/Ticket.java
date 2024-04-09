@@ -7,7 +7,8 @@ import java.util.UUID;
 
 
 @Getter
-public class Ticket {private Event event;
+public class Ticket {
+    private Event event;
     private String code;
 
     public Ticket(Event event) {
